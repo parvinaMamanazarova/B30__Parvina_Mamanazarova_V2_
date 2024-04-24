@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CustomLinkedList {
@@ -5,11 +6,13 @@ public class CustomLinkedList {
     private Node[] buckets = new Node[16];
     private Node head;
     private Node tail;
+    private Node prev ;
+    private Node last ;
 
 
     private int size;
 
-    private class Node {
+    private class Node{
         Integer key;
         String value;
         Node next;
@@ -19,7 +22,7 @@ public class CustomLinkedList {
             this.value = value;
         }
 
-        public Node(Integer key, String value, Node next) {
+        public Node(Integer key, String value, Node next, Node prev , Node last) {
             this.key = key;
             this.value = value;
             this.next = next;
@@ -28,7 +31,7 @@ public class CustomLinkedList {
 
 
     public String add(Integer key, String value) {
-        if(size >= buckets.length * 0.75) {
+        if (size >= buckets.length * 0.75) {
             resize();
         }
 
@@ -75,7 +78,7 @@ public class CustomLinkedList {
         Node[] temp = new Node[length];
 
         for (Node bucket : buckets) {
-            while(Objects.nonNull(bucket)) {
+            while (Objects.nonNull(bucket)) {
                 int index = index(bucket.key, length);
                 Node node = temp[index];
 
@@ -109,10 +112,37 @@ public class CustomLinkedList {
     }
 
     public int index(Integer key, int length) {
-       return key.hashCode() % length;
+        return key.hashCode() % length;
     }
-   public void remove(int index){
 
-   }
+    public void remove(int index) {
+        if(index > size){
+            throw  new IndexOutOfBoundsException("Wrong input");
+        }
+        if(Objects.equals(index,0)){
+            head = head.next;
+            return;
+        }
+        prev = null ;
+        head.next = null ;
+        if(head.next == null){
+            last = null;
+        }else {
+            head.next = prev ;
+            size--;
+            return ;
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "CustomLinkedList{" +
+                "buckets=" + Arrays.toString(buckets) +
+                ", head=" + head +
+                ", tail=" + tail +
+                ", size=" + size +
+                '}';
+    }
 }
 
