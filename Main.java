@@ -20,7 +20,7 @@ public class Main {
      System.out.println(linkedList);*/
 
      Task3 task3 = new Task3();
- //    String str = {"cd" , "dc" ,"ca" ,"zz" };
+ //    String[] str = {"cd" , "dc" ,"ca" ,"zz" };
 
 
    }
