@@ -4,7 +4,7 @@ public class Task3 {
         for (int i = 0 ; i < words.length ; i++) {
             String str = "";
             for(int j = 1 ; j < words.length;j++){
-               if()
+
             }
         }
         return count;
